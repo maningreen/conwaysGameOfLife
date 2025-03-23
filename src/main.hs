@@ -11,6 +11,7 @@ main = do {
             initScr;
             echo False;
             noDelay stdScr True;
+            cursSet CursorInvisible;
             gen <- getStdGen;
             grid <- initGrid gen;
             gameLoop Running grid;
