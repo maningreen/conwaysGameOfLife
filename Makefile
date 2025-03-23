@@ -8,11 +8,18 @@ LDFLAGS = -Wall -package hscurses -package random
 
 TARGET = game
 
-main: $(OBJS)
+BUILDDIR = build/
+
+main: $(OBJS) $(BUILDDIR)
 	$(GHC) $(OBJS) -outputdir build/ -o build/$(TARGET) $(LDFLAGS)
 
-build/%.o : src/%.hs
+$(BUILDDIR)%.o : src/%.hs $(BUILDDIR)
 	$(GHC) -c -o $@ $< -outputdir build/
+
+$(BUILDDIR):
+	mkdir -p build
 
 clean:
 	rm build/*
+
+
