@@ -14,26 +14,24 @@ main = do {
             cursSet CursorInvisible;
             gen <- getStdGen;
             grid <- initGrid gen;
-            gameLoop Running grid;
+            gameLoop grid;
             endWin;
           }
 
-data State = Running deriving (Enum, Eq)
-
-gameLoop :: State -> Grid -> IO ()
-gameLoop state grid = let 
-    sleepTime = 20000
-  in if state == Running then do {
-    printGrid grid;
-    refresh;
-    threadDelay sleepTime;
-    c <- getch;
-    if c == 113 then
-      return ()
-    else
-      gameLoop Running (updateGrid grid);
-  } else 
-    return ()
+gameLoop :: Grid -> IO ()
+gameLoop grid = let 
+      sleepTime = 20000
+    in
+    do {
+      printGrid grid;
+      refresh;
+      threadDelay sleepTime;
+      c <- getch;
+      if c == 113 then
+        return ()
+      else
+        gameLoop (updateGrid grid);
+    };
 
 manageSelection :: ButtonEvent -> Grid -> Grid
 manageSelection ev x = let  
