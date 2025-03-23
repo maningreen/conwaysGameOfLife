@@ -6,7 +6,7 @@ OBJS = $(SRC:src/%.hs=build/%.o)
 
 LDFLAGS = -Wall -package hscurses -package random
 
-TARGET = game
+TARGET = gameOfLife
 
 BUILDDIR = build/
 

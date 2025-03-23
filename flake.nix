@@ -34,7 +34,7 @@
     };
 
     packages.${system}.default = let 
-      excecutable = "game";
+      excecutable = "gameOfLife";
 
     in pkgs.stdenv.mkDerivation {
       name = excecutable;

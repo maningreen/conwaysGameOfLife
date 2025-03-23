@@ -18,7 +18,7 @@ Every time to run the game it randomly generates a grid and runs through that.
 #### Building and Running
 
 `make` should spit an excecutable called out at build/game
-excecute it with `./build/game` (or if you're weird `build/game`)
+excecute it with `./build/gameOfLife` (or if you're weird `build/gameOfLife`)
 
 ### With Nix Flakes
 
@@ -53,4 +53,4 @@ experimental-features = nix-command flakes
 It's suggested to do `nix run`, for that will build and run it but if you wish to build it with
 nix build and run it manually you can
 
-`nix build` should build an excecutable in `result/bin/game`, run it with `./result/bin/game`
+`nix build` should build an excecutable in `result/bin/gameOfLife`, run it with `./result/bin/gameOfLife`
