@@ -43,7 +43,7 @@ nix = {
 
 ##### Other distros, without home manager
 
-Add this to your `nix.conf` (`/etc/nix/nix.conf` or `/.config/nix/nix.config`)
+Add this to your `nix.conf` (`/etc/nix/nix.conf` or `~/.config/nix/nix.config`)
 ```
 experimental-features = nix-command flakes
 ```
