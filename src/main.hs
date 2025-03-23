@@ -11,7 +11,8 @@ main = do {
             initScr;
             echo False;
             noDelay stdScr True;
-            grid <- initGrid;
+            gen <- getStdGen;
+            grid <- initGrid gen;
             gameLoop Running grid;
             endWin;
           }
@@ -117,10 +118,8 @@ cellToChar 1 = 42
 cellToChar 0 = 32
 cellToChar _ = 42
 
-initGrid :: IO Grid
-initGrid = let 
-    randTup = random (mkStdGen 6) :: (Int, StdGen);
-    rand = fst randTup `mod` 2;
+initGrid :: StdGen -> IO Grid
+initGrid gen = let 
     buildArr :: Int -> StdGen -> ([Int], StdGen)
     buildArr targSize g
       | targSize > 0  = let 
@@ -137,6 +136,6 @@ initGrid = let
       | sizeY == 0 = [[]]
   in do {
         (y, x) <- scrSize;
-        let baseMap = buildGrid (x, y) (mkStdGen 5) in
+        let baseMap = buildGrid (x, y) gen in
         return baseMap;
       }
