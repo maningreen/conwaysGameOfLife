@@ -91,7 +91,7 @@ getNeighbourCount item grid = let
     getOffsetValue off = let 
         offsetedVal = offset (fst item) off
       in if (not (outaBounds offsetedVal)) then toBool (getItem offsetedVal) else False
-        where outaBounds (x, y) = x < 0 || y < 0 || x >= (length grid) - 1 || y >= length (head grid)
+        where outaBounds (x, y) = x < 0 || y < 0 || x >= length grid - 1 || y >= length (head grid)
   in
       -- here we do a lot.
       toInt (getOffsetValue (-1, -1)) + toInt (getOffsetValue (-1, 0)) + toInt (getOffsetValue (-1, 1)) +
