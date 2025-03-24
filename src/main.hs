@@ -59,11 +59,11 @@ zipGrid g = let
     embedY :: Grid -> [[(Int, Int)]]
     embedY = map (zip [0..])
     embedX :: [[(Int, Int)]] -> [(Int, [(Int, Int)])]
-    embedX  = zip [0..]
+    embedX = zip [0..]
     fixFormatting :: [(Int, [(Int, Int)])] -> [[((Int, Int), Int)]]
     fixFormatting list = let 
         fixOne :: (Int, [(Int, Int)]) -> [((Int, Int), Int)]
-        fixOne (a, b) = map (\ x -> ((a, fst x), snd x)) b
+        fixOne (a, b) = map (\ (x, y)-> ((a, x), y)) b
       in map fixOne list
     in fixFormatting (embedX (embedY g))
 
@@ -90,7 +90,7 @@ getNeighbourCount item grid = let
     getOffsetValue :: (Int, Int) -> Bool
     getOffsetValue off = let 
         offsetedVal = offset (fst item) off
-      in if (not (outaBounds offsetedVal)) then toBool (getItem offsetedVal) else False
+      in if not (outaBounds offsetedVal) then toBool (getItem offsetedVal) else False
         where outaBounds (x, y) = x < 0 || y < 0 || x >= length grid - 1 || y >= length (head grid)
   in
       -- here we do a lot.
